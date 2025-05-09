@@ -1,0 +1,24 @@
+{
+  "lastSelectedStatus": "claude-3-opus-20240229",
+  "sessionDefault": "claude-3-opus-20240229",
+  "sessions": {},
+
+  "mcpEndpoints": [
+    {
+      "url": "http://127.0.0.1:6274",
+      "description": "Naver News Analyzer",
+      "enabled": true
+    }
+  ],
+
+  "mcpServers": {
+    "naver-news": {
+      "command": "mcp",
+      "args": [
+        "dev",
+        "/Users/yeong-gwang/Desktop/work/서울경제신문/구글워크숍/news_search/main.py"
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,9 @@
+[project]
+name = "google_workshop"
+version = "0.1.0"
+description = "A simple MCP server project."
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["uv >= 0.1.0", "uv_build >= 0.1.0"]
+build-backend = "uv_build" 
