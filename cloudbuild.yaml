@@ -1,0 +1,38 @@
+steps:
+  # 1. Docker 이미지 빌드
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "build",
+        "-t",
+        "asia-northeast3-docker.pkg.dev/PROJECT-ID/REPOSITORY-NAME/IMAGE-NAME:$COMMIT_SHA",
+        ".",
+      ]
+    # PROJECT-ID: 실제 Google Cloud 프로젝트 ID로 변경
+    # REPOSITORY-NAME: Artifact Registry의 저장소 이름 (예: my-app-repo)
+    # IMAGE-NAME: 빌드할 이미지 이름 (예: news-analyzer-server)
+
+  # 2. 빌드된 이미지를 Artifact Registry에 푸시
+  - name: "gcr.io/cloud-builders/docker"
+    args:
+      [
+        "push",
+        "asia-northeast3-docker.pkg.dev/PROJECT-ID/REPOSITORY-NAME/IMAGE-NAME:$COMMIT_SHA",
+      ]
+
+# 3. (선택 사항) Cloud Run 또는 다른 서비스에 배포 (Cloud Run 예시)
+# - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#   entrypoint: gcloud
+#   args: [
+#     'run', 'deploy', 'SERVICE-NAME', # SERVICE-NAME: 배포할 Cloud Run 서비스 이름
+#     '--image', 'asia-northeast3-docker.pkg.dev/PROJECT-ID/REPOSITORY-NAME/IMAGE-NAME:$COMMIT_SHA',
+#     '--region', 'asia-northeast3', # 배포할 리전
+#     '--platform', 'managed', # 또는 gke
+#     '--allow-unauthenticated' # 필요에 따라 인증 설정
+#   ]
+
+images:
+  - "asia-northeast3-docker.pkg.dev/PROJECT-ID/REPOSITORY-NAME/IMAGE-NAME:$COMMIT_SHA"
+
+options:
+  logging: CLOUD_LOGGING_ONLY

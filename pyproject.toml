@@ -3,6 +3,12 @@ name = "google_workshop"
 version = "0.1.0"
 description = "A simple MCP server project."
 requires-python = ">=3.10"
+dependencies = [
+    "fastmcp",  # 정확한 mcp 라이브러리 이름으로 변경해야 합니다.
+    "httpx",
+    "beautifulsoup4",
+    "python-dotenv"
+]
 
 [build-system]
 requires = ["uv >= 0.1.0", "uv_build >= 0.1.0"]

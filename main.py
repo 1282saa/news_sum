@@ -39,7 +39,7 @@ NAVER_CLIENT_SECRET = os.getenv("NAVER_CLIENT_SECRET", "nBQbi0IM30")
 DEFAULT_TIMEOUT = 15.0  # 콘텐츠 추출을 위해 타임아웃 증가
 MAX_RETRIES = 3
 RETRY_DELAY = 1.0
-MAX_NEWS_ITEMS = 10  # 검색할 최대 뉴스 항목 수
+MAX_NEWS_ITEMS = 20  # 검색할 최대 뉴스 항목 수 (10 -> 20으로 변경)
 MAX_CONTENT_LENGTH = 1000  # 뉴스 내용의 최대 길이 (너무 길면 잘라냄)
 
 NAVER_HEADERS = {
@@ -205,7 +205,7 @@ async def search_news(keyword: str, ctx: Context) -> str:
         search_url = "https://openapi.naver.com/v1/search/news.json"
         params = {
             "query": keyword,
-            "display": MAX_NEWS_ITEMS,  # 최대 10개 결과
+            "display": MAX_NEWS_ITEMS,  # 최대 20개 결과
             "sort": "sim"  # 유사도순 정렬
         }
         
@@ -335,7 +335,7 @@ async def search_news_with_content(keyword: str, ctx: Context) -> str:
         search_url = "https://openapi.naver.com/v1/search/news.json"
         params = {
             "query": keyword,
-            "display": 5,  # 최대 5개 결과만 가져옴 (본문 추출은 시간이 많이 소요됨)
+            "display": 20,  # 최대 20개 결과만 가져옴 (5 -> 20으로 변경)
             "sort": "sim"  # 유사도순 정렬
         }
         
